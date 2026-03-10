@@ -7,14 +7,16 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Segoe UI',Arial,sans-serif; background:#0f1117; color:#e2e8f0; min-height:100vh; }
+
 .header { background:linear-gradient(135deg,#1a1f2e,#0d1117); border-bottom:1px solid #2d3748; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
 .header h1 { font-size:18px; font-weight:700; color:#fff; }
 .header h1 span { color:#f6ad55; }
 .header-right { display:flex; align-items:center; gap:12px; }
 .last-update { font-size:11px; color:#718096; }
-.btn-refresh { background:#2d3748; border:1px solid #4a5568; color:#e2e8f0; padding:7px 14px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:.2s; }
+.btn-refresh { background:#2d3748; border:1px solid #4a5568; color:#e2e8f0; padding:7px 14px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:.2s; display:flex; align-items:center; gap:6px; }
 .btn-refresh:hover { background:#4a5568; }
 .btn-refresh.loading { opacity:.6; pointer-events:none; }
+
 .summary { display:flex; gap:12px; padding:16px 24px; flex-wrap:wrap; }
 .s-card { flex:1; min-width:140px; background:#1a1f2e; border:1px solid #2d3748; border-radius:10px; padding:14px 18px; }
 .s-card .lbl { font-size:11px; color:#718096; margin-bottom:6px; text-transform:uppercase; letter-spacing:.5px; }
@@ -24,14 +26,17 @@ body { font-family:'Segoe UI',Arial,sans-serif; background:#0f1117; color:#e2e8f
 .s-card .val.white { color:#fff; }
 .s-card .val.yellow { color:#f6ad55; }
 .s-card .sub { font-size:11px; margin-top:3px; }
+
 .tabs { display:flex; gap:4px; padding:0 24px; border-bottom:1px solid #2d3748; }
 .tab { padding:10px 20px; font-size:13px; font-weight:600; cursor:pointer; border-bottom:2px solid transparent; color:#718096; transition:.2s; }
 .tab.active { color:#f6ad55; border-bottom-color:#f6ad55; }
+
 .content { padding:20px 24px; }
 .section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px; }
 .section-title { font-size:14px; font-weight:700; color:#a0aec0; text-transform:uppercase; letter-spacing:1px; }
 .btn-add { background:#2b6cb0; border:none; color:#fff; padding:7px 14px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:.2s; }
 .btn-add:hover { background:#3182ce; }
+
 table { width:100%; border-collapse:collapse; }
 thead tr { background:#1a1f2e; }
 thead th { padding:10px 12px; text-align:left; font-size:11px; color:#718096; text-transform:uppercase; letter-spacing:.5px; font-weight:600; border-bottom:1px solid #2d3748; }
@@ -48,23 +53,27 @@ tbody td.sym { font-weight:700; color:#fff; font-size:14px; }
 .badge.kripto { background:#553c9a; color:#d6bcfa; }
 .del-btn { background:none; border:none; color:#4a5568; cursor:pointer; font-size:16px; transition:.2s; }
 .del-btn:hover { color:#fc8181; }
+
 .modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:100; align-items:center; justify-content:center; }
 .modal-bg.open { display:flex; }
 .modal { background:#1a1f2e; border:1px solid #2d3748; border-radius:14px; padding:28px; width:360px; max-width:94vw; }
 .modal h2 { font-size:16px; font-weight:700; margin-bottom:20px; color:#fff; }
-.form-group { margin-bottom:14px; position:relative; }
+.form-group { margin-bottom:14px; }
 .form-group label { font-size:12px; color:#a0aec0; display:block; margin-bottom:5px; font-weight:600; }
-.form-group input { width:100%; background:#0f1117; border:1px solid #4a5568; border-radius:7px; padding:9px 12px; color:#e2e8f0; font-size:13px; }
+.form-group input, .form-group select { width:100%; background:#0f1117; border:1px solid #4a5568; border-radius:7px; padding:9px 12px; color:#e2e8f0; font-size:13px; }
 .form-group input:focus { outline:none; border-color:#f6ad55; }
 .modal-btns { display:flex; gap:10px; margin-top:20px; }
 .btn-save { flex:1; background:#f6ad55; color:#0f1117; border:none; padding:10px; border-radius:7px; font-weight:700; cursor:pointer; font-size:13px; }
+.btn-save:hover { background:#ed8936; }
 .btn-cancel { flex:1; background:#2d3748; color:#e2e8f0; border:none; padding:10px; border-radius:7px; font-weight:600; cursor:pointer; font-size:13px; }
+.btn-cancel:hover { background:#4a5568; }
+.tip { font-size:11px; color:#718096; margin-top:4px; }
 .empty { text-align:center; padding:32px; color:#4a5568; font-size:13px; }
 .crypto-hints { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
 .hint-tag { background:#2d3748; color:#a0aec0; padding:3px 8px; border-radius:4px; font-size:11px; cursor:pointer; }
 .hint-tag:hover { background:#4a5568; color:#fff; }
+
 .save-badge { background:#276749; color:#9ae6b4; font-size:11px; padding:3px 8px; border-radius:4px; font-weight:600; }
-.oneri-liste { display:none; position:absolute; top:100%; left:0; right:0; background:#0f1117; border:1px solid #4a5568; border-radius:7px; z-index:200; max-height:220px; overflow-y:auto; margin-top:2px; }
 .oneri-item { padding:8px 12px; cursor:pointer; font-size:13px; border-bottom:1px solid #2d3748; display:flex; gap:8px; align-items:center; }
 .oneri-item:hover { background:#2d3748; }
 .oneri-item b { color:#f6ad55; min-width:60px; }
@@ -106,28 +115,34 @@ tbody td.sym { font-weight:700; color:#fff; font-size:14px; }
     </div>
   </div>
   <div style="overflow-x:auto">
-    <table>
-      <thead><tr>
-        <th>Sembol</th><th>Tür</th><th class="num">Adet</th>
-        <th class="num">Alış (₺)</th><th class="num">Güncel (₺)</th>
-        <th class="num">Maliyet (₺)</th><th class="num">Değer (₺)</th>
-        <th class="num">K/Z (₺)</th><th class="num">K/Z %</th><th></th>
-      </tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
+  <table>
+    <thead><tr>
+      <th>Sembol</th>
+      <th>Tür</th>
+      <th class="num">Adet</th>
+      <th class="num">Alış (₺)</th>
+      <th class="num">Güncel (₺)</th>
+      <th class="num">Maliyet (₺)</th>
+      <th class="num">Değer (₺)</th>
+      <th class="num">K/Z (₺)</th>
+      <th class="num">K/Z %</th>
+      <th></th>
+    </tr></thead>
+    <tbody id="tbody"></tbody>
+  </table>
   </div>
-  <div class="empty" id="emptyMsg">Henüz varlık eklenmedi.</div>
+  <div class="empty" id="emptyMsg">Henüz varlık eklenmedi. Yukarıdaki butonları kullan.</div>
 </div>
 
 <div class="modal-bg" id="modalBg">
   <div class="modal">
     <h2 id="modalTitle">Varlık Ekle</h2>
-    <div class="form-group">
+    <div class="form-group" style="position:relative">
       <label id="sembolLabel">Sembol</label>
-      <input id="sembolInp" placeholder="Örn: THYAO" style="text-transform:uppercase"
+      <input id="sembolInp" placeholder="Örn: THYAO veya TEK..." style="text-transform:uppercase"
         oninput="modalTur==='bist'?bistOneriGoster(this.value):null">
       <div id="sembolAd" style="font-size:11px;color:#f6ad55;margin-top:3px;min-height:16px"></div>
-      <div class="oneri-liste" id="bistOneriListe"></div>
+      <div id="bistOneriListe" style="display:none;position:absolute;top:100%;left:0;right:0;background:#0f1117;border:1px solid #4a5568;border-radius:7px;z-index:200;max-height:220px;overflow-y:auto;margin-top:2px"></div>
       <div class="crypto-hints" id="cryptoHints" style="display:none">
         <span class="hint-tag" onclick="setSembol('BTC')">BTC</span>
         <span class="hint-tag" onclick="setSembol('ETH')">ETH</span>
@@ -140,7 +155,7 @@ tbody td.sym { font-weight:700; color:#fff; font-size:14px; }
         <span class="hint-tag" onclick="setSembol('TON')">TON</span>
         <span class="hint-tag" onclick="setSembol('SHIB')">SHIB</span>
       </div>
-      <div style="font-size:11px;color:#718096;margin-top:4px" id="sembolTip"></div>
+      <div class="tip" id="sembolTip"></div>
     </div>
     <div class="form-group">
       <label>Adet</label>
@@ -158,7 +173,7 @@ tbody td.sym { font-weight:700; color:#fff; font-size:14px; }
 </div>
 
 <script>
-const STORAGE_KEY = 'portfolyo_v2';
+const STORAGE_KEY = 'portfolyo_varliklar_v1';
 const cryptoMap = {
   BTC:'bitcoin',ETH:'ethereum',BNB:'binancecoin',SOL:'solana',
   XRP:'ripple',AVAX:'avalanche-2',DOGE:'dogecoin',DOT:'polkadot',
@@ -167,157 +182,218 @@ const cryptoMap = {
   TON:'the-open-network',NEAR:'near',FTM:'fantom',OP:'optimism'
 };
 
-let varliklar=[], kurUSD=0, aktifTab=0, modalTur='bist', bistHisseler=[];
+let varliklar = [];
+let kurUSD = 0;
+let aktifTab = 0;
+let modalTur = 'bist';
+
+// ── Kalıcı Kayıt ──────────────────────────────
+function manuelFiyat(id) {
+  const v = varliklar.find(x => x.id === id);
+  if (!v) return;
+  const yeni = prompt(`${v.sembol} için güncel fiyat girin (₺):`, v.guncelFiyat || v.alisFiyati);
+  if (yeni && !isNaN(parseFloat(yeni))) {
+    v.guncelFiyat = parseFloat(yeni);
+    v.yukleniyor = false;
+    ozetGuncelle();
+    tabloRender();
+  }
+}
 
 function kaydet() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(varliklar.map(v=>({id:v.id,sembol:v.sembol,tur:v.tur,adet:v.adet,alisFiyati:v.alisFiyati})))); } catch(e){}
-}
-function yukle() {
-  try { const r=localStorage.getItem(STORAGE_KEY); if(r) varliklar=JSON.parse(r).map(v=>({...v,guncelFiyat:null,yukleniyor:false})); } catch(e){}
+  try {
+    const data = varliklar.map(v => ({
+      id: v.id, sembol: v.sembol, tur: v.tur,
+      adet: v.adet, alisFiyati: v.alisFiyati
+    }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch(e) {}
 }
 
+function yukle() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    varliklar = data.map(v => ({ ...v, guncelFiyat: null, yukleniyor: false }));
+  } catch(e) {}
+}
+// ──────────────────────────────────────────────
+
+function getCryptoId(sym) { return cryptoMap[sym.toUpperCase()] || sym.toLowerCase(); }
+
 async function proxyFetch(url) {
-  const proxies=[
-    u=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-    u=>`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+  const proxies = [
+    u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+    u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+    u => `https://thingproxy.freeboard.io/fetch/${u}`,
   ];
-  for(const p of proxies){
-    try{ const r=await fetch(p(url),{signal:AbortSignal.timeout(5000)}); if(r.ok) return r; }catch(e){}
+  for (const proxy of proxies) {
+    try {
+      const r = await fetch(proxy(url), { signal: AbortSignal.timeout(5000) });
+      if (r.ok) return r;
+    } catch(e) {}
   }
   return null;
 }
 
 async function bistListeYukle() {
   try {
-    const r=await proxyFetch('http://bigpara.hurriyet.com.tr/api/v1/hisse/list');
-    if(r){ const d=await r.json(); if(d?.data?.length){ bistHisseler=d.data.map(h=>({kod:h.kod,ad:h.ad||h.kod})); return; }}
-  } catch(e){}
-  bistHisseler=[
+    const r = await proxyFetch('http://bigpara.hurriyet.com.tr/api/v1/hisse/list');
+    if (r) {
+      const d = await r.json();
+      if (d?.data?.length) {
+        bistHisseler = d.data.map(h => ({ kod: h.kod, ad: h.ad || h.kod }));
+        return;
+      }
+    }
+  } catch(e) {}
+  // Yedek: statik popüler hisse listesi
+  bistHisseler = [
     {kod:'THYAO',ad:'Türk Hava Yolları'},{kod:'GARAN',ad:'Garanti Bankası'},
     {kod:'ASELS',ad:'Aselsan'},{kod:'EREGL',ad:'Ereğli Demir Çelik'},
     {kod:'KCHOL',ad:'Koç Holding'},{kod:'SAHOL',ad:'Sabancı Holding'},
     {kod:'ISCTR',ad:'İş Bankası'},{kod:'AKBNK',ad:'Akbank'},
     {kod:'TUPRS',ad:'Tüpraş'},{kod:'BIMAS',ad:'BİM Mağazalar'},
     {kod:'TEKTU',ad:'Tek-Art Turizm'},{kod:'SISE',ad:'Şişe Cam'},
-    {kod:'PGSUS',ad:'Pegasus'},{kod:'TAVHL',ad:'TAV Havalimanları'},
-    {kod:'VESTL',ad:'Vestel'},{kod:'ARCLK',ad:'Arçelik'},
-    {kod:'TOASO',ad:'Tofaş Oto'},{kod:'FROTO',ad:'Ford Otosan'},
+    {kod:'HEKTS',ad:'Hektaş'},{kod:'PGSUS',ad:'Pegasus'},
+    {kod:'TAVHL',ad:'TAV Havalimanları'},{kod:'VESTL',ad:'Vestel'},
+    {kod:'ARCLK',ad:'Arçelik'},{kod:'TOASO',ad:'Tofaş Oto'},
+    {kod:'FROTO',ad:'Ford Otosan'},{kod:'DOHOL',ad:'Doğan Holding'},
     {kod:'EKGYO',ad:'Emlak Konut GYO'},{kod:'PETKM',ad:'Petkim'},
     {kod:'KOZAL',ad:'Koza Altın'},{kod:'ULKER',ad:'Ülker'},
     {kod:'TCELL',ad:'Turkcell'},{kod:'TTKOM',ad:'Türk Telekom'},
+    {kod:'KONTR',ad:'Kontrolmatik'},{kod:'OYAKC',ad:'Oyak Çimento'},
     {kod:'MGROS',ad:'Migros'},{kod:'SOKM',ad:'Şok Marketler'},
-    {kod:'DOHOL',ad:'Doğan Holding'},{kod:'OYAKC',ad:'Oyak Çimento'},
-    {kod:'KONTR',ad:'Kontrolmatik'},{kod:'HEKTS',ad:'Hektaş'},
   ];
 }
 
 function bistOneriGoster(val) {
-  const liste=document.getElementById('bistOneriListe');
-  if(!val||bistHisseler.length===0){liste.style.display='none';return;}
-  const q=val.toUpperCase();
-  const eslesme=bistHisseler.filter(h=>h.kod.startsWith(q)||h.ad.toUpperCase().includes(q)).slice(0,8);
-  if(!eslesme.length){liste.style.display='none';return;}
-  liste.innerHTML=eslesme.map(h=>`<div class="oneri-item" onclick="bistSec('${h.kod}','${h.ad.replace(/'/g,"\\'")}')"><b>${h.kod}</b><span>${h.ad}</span></div>`).join('');
-  liste.style.display='block';
+  const liste = document.getElementById('bistOneriListe');
+  if (!val || val.length < 1 || bistHisseler.length === 0) { liste.style.display='none'; return; }
+  const aramal = val.toUpperCase();
+  const eslesme = bistHisseler.filter(h => h.kod.startsWith(aramal) || h.ad.toUpperCase().includes(aramal)).slice(0, 8);
+  if (!eslesme.length) { liste.style.display='none'; return; }
+  liste.innerHTML = eslesme.map(h =>
+    `<div class="oneri-item" onclick="bistSec('${h.kod}','${h.ad.replace(/'/g,"\\'")}')">
+      <b>${h.kod}</b> <span>${h.ad}</span>
+    </div>`
+  ).join('');
+  liste.style.display = 'block';
 }
 
-function bistSec(kod,ad){
-  document.getElementById('sembolInp').value=kod;
-  document.getElementById('sembolAd').textContent=ad;
-  document.getElementById('bistOneriListe').style.display='none';
+function bistSec(kod, ad) {
+  document.getElementById('sembolInp').value = kod;
+  document.getElementById('sembolAd').textContent = ad;
+  document.getElementById('bistOneriListe').style.display = 'none';
 }
 
-function getCryptoId(sym){return cryptoMap[sym.toUpperCase()]||sym.toLowerCase();}
-
-function tabSec(i,el){
-  aktifTab=i;
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+function tabSec(i, el) {
+  aktifTab = i;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  document.getElementById('secTitle').textContent=['Tüm Varlıklar','BIST Hisseleri','Kripto Paralar'][i];
+  document.getElementById('secTitle').textContent = ['Tüm Varlıklar','BIST Hisseleri','Kripto Paralar'][i];
   tabloRender();
 }
 
-function modalAc(tur){
-  modalTur=tur;
+function modalAc(tur) {
+  modalTur = tur;
   document.getElementById('modalBg').classList.add('open');
-  document.getElementById('modalTitle').textContent=tur==='bist'?'📈 BIST Hissesi Ekle':'🪙 Kripto Para Ekle';
-  document.getElementById('sembolLabel').textContent=tur==='bist'?'Hisse Sembolü':'Kripto Sembolü';
-  document.getElementById('sembolTip').textContent=tur==='bist'?'Sembol yazınca öneri çıkar':'Örn: BTC, ETH, SOL';
-  document.getElementById('cryptoHints').style.display=tur==='kripto'?'flex':'none';
-  document.getElementById('bistOneriListe').style.display='none';
-  document.getElementById('sembolInp').value='';
-  document.getElementById('sembolAd').textContent='';
-  document.getElementById('adetInp').value='';
-  document.getElementById('fiyatInp').value='';
-}
-function modalKapat(){document.getElementById('modalBg').classList.remove('open');}
-function setSembol(s){document.getElementById('sembolInp').value=s;}
-
-async function varlikEkle(){
-  const sem=document.getElementById('sembolInp').value.trim().toUpperCase();
-  const adet=parseFloat(document.getElementById('adetInp').value);
-  const alis=parseFloat(document.getElementById('fiyatInp').value);
-  if(!sem||!adet||!alis) return alert('Lütfen tüm alanları doldurun.');
-  const v={id:Date.now(),sembol:sem,tur:modalTur,adet,alisFiyati:alis,guncelFiyat:null,yukleniyor:true};
-  varliklar.push(v); kaydet(); modalKapat(); tabloRender();
-  await fiyatGuncelle(v); ozetGuncelle(); tabloRender();
+  document.getElementById('modalTitle').textContent = tur === 'bist' ? '📈 BIST Hissesi Ekle' : '🪙 Kripto Para Ekle';
+  document.getElementById('sembolLabel').textContent = tur === 'bist' ? 'Hisse Sembolü' : 'Kripto Sembolü';
+  document.getElementById('sembolTip').textContent = tur === 'bist' ? 'Örn: THYAO, GARAN, ASELS, EREGL' : 'Örn: BTC, ETH, SOL, BNB';
+  document.getElementById('cryptoHints').style.display = tur === 'kripto' ? 'flex' : 'none';
+  document.getElementById('sembolInp').value = '';
+  document.getElementById('adetInp').value = '';
+  document.getElementById('fiyatInp').value = '';
 }
 
-function varlikSil(id){
-  varliklar=varliklar.filter(v=>v.id!==id);
-  kaydet(); ozetGuncelle(); tabloRender();
+function modalKapat() { document.getElementById('modalBg').classList.remove('open'); }
+function setSembol(s) { document.getElementById('sembolInp').value = s; }
+
+async function varlikEkle() {
+  const sem = document.getElementById('sembolInp').value.trim().toUpperCase();
+  const adet = parseFloat(document.getElementById('adetInp').value);
+  const alis = parseFloat(document.getElementById('fiyatInp').value);
+  if (!sem || !adet || !alis) return alert('Lütfen tüm alanları doldurun.');
+  const v = { id: Date.now(), sembol: sem, tur: modalTur, adet, alisFiyati: alis, guncelFiyat: null, yukleniyor: true };
+  varliklar.push(v);
+  kaydet(); // 💾 anında kaydet
+  modalKapat();
+  tabloRender();
+  await fiyatGuncelle(v);
+  ozetGuncelle();
+  tabloRender();
 }
 
-async function fiyatGuncelle(v){
-  try{
-    if(v.tur==='kripto'){
-      const id=getCryptoId(v.sembol);
-      const r=await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=try`);
-      const d=await r.json();
-      v.guncelFiyat=d[id]?.try||null;
+function varlikSil(id) {
+  varliklar = varliklar.filter(v => v.id !== id);
+  kaydet(); // 💾 silince de kaydet
+  ozetGuncelle();
+  tabloRender();
+}
+
+async function fiyatGuncelle(v) {
+  try {
+    if (v.tur === 'kripto') {
+      const id = getCryptoId(v.sembol);
+      const r = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=try`);
+      const d = await r.json();
+      v.guncelFiyat = d[id]?.try || null;
     } else {
-      // Bigpara proxy
-      try{
-        const r=await proxyFetch(`http://bigpara.hurriyet.com.tr/api/v1/borsa/hisseyuzeysel/${v.sembol}`);
-        if(r){const d=await r.json();const son=d?.data?.HisseIstatistik?.SONDEGER||d?.data?.HisseIstatistik?.SON;if(son){v.guncelFiyat=parseFloat(String(son).replace(',','.'));return;}}
-      }catch(e){}
-      // Yahoo Finance
-      for(const base of ['https://query1.finance.yahoo.com','https://query2.finance.yahoo.com']){
-        try{const r=await fetch(`${base}/v8/finance/chart/${v.sembol}.IS?interval=1d&range=1d`);const d=await r.json();const p=d?.chart?.result?.[0]?.meta?.regularMarketPrice;if(p){v.guncelFiyat=p;return;}}catch(e){}
+      // Bigpara ile fiyat çek (çoklu proxy)
+      try {
+        const r = await proxyFetch(`http://bigpara.hurriyet.com.tr/api/v1/borsa/hisseyuzeysel/${v.sembol}`);
+        if (r) {
+          const d = await r.json();
+          const son = d?.data?.HisseIstatistik?.SONDEGER || d?.data?.HisseIstatistik?.SON;
+          if (son) { v.guncelFiyat = parseFloat(String(son).replace(',','.')); return; }
+        }
+      } catch(e) {}
+      // Yahoo Finance yedek
+      for (const base of ['https://query1.finance.yahoo.com','https://query2.finance.yahoo.com']) {
+        try {
+          const r = await fetch(`${base}/v8/finance/chart/${v.sembol}.IS?interval=1d&range=1d`);
+          const d = await r.json();
+          const p = d?.chart?.result?.[0]?.meta?.regularMarketPrice;
+          if (p) { v.guncelFiyat = p; return; }
+        } catch(e) {}
       }
-      v.guncelFiyat=null;
+      v.guncelFiyat = null;
     }
-  }catch(e){v.guncelFiyat=null;}
-  v.yukleniyor=false;
+  } catch(e) { v.guncelFiyat = null; }
+  v.yukleniyor = false;
 }
 
-async function tumFiyatlariGuncelle(){
-  if(!varliklar.length) return;
-  const btn=document.getElementById('refreshBtn');
-  btn.classList.add('loading'); btn.textContent='⏳ Güncelleniyor...';
+async function tumFiyatlariGuncelle() {
+  if (!varliklar.length) return;
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('loading'); btn.textContent = '⏳ Güncelleniyor...';
   await kurCek();
-  await Promise.all(varliklar.map(v=>fiyatGuncelle(v)));
+  await Promise.all(varliklar.map(v => fiyatGuncelle(v)));
   ozetGuncelle(); tabloRender();
-  btn.classList.remove('loading'); btn.textContent='🔄 Güncelle';
-  document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('tr-TR');
+  btn.classList.remove('loading'); btn.textContent = '🔄 Güncelle';
+  document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString('tr-TR');
 }
 
-async function kurCek(){
-  try{
-    const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=try');
-    const d=await r.json(); kurUSD=d?.tether?.try||0;
-    document.getElementById('s_kur').textContent=kurUSD?'₺'+fmt(kurUSD,2):'—';
-  }catch(e){}
+async function kurCek() {
+  try {
+    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=try');
+    const d = await r.json();
+    kurUSD = d?.tether?.try || 0;
+    document.getElementById('s_kur').textContent = kurUSD ? '₺' + fmt(kurUSD, 2) : '—';
+  } catch(e) {}
 }
 
-function ozetGuncelle(){
+function ozetGuncelle() {
   let tM=0,tD=0,bM=0,bD=0,kM=0,kD=0;
-  varliklar.forEach(v=>{
-    const m=v.alisFiyati*v.adet,d=v.guncelFiyat?v.guncelFiyat*v.adet:0;
-    tM+=m;tD+=d;
+  varliklar.forEach(v => {
+    const m = v.alisFiyati * v.adet;
+    const d = v.guncelFiyat ? v.guncelFiyat * v.adet : 0;
+    tM+=m; tD+=d;
     if(v.tur==='bist'){bM+=m;bD+=d;}else{kM+=m;kD+=d;}
   });
-  const kz=tD-tM,kzP=tM?(kz/tM*100):0;
+  const kz=tD-tM, kzP=tM?(kz/tM*100):0;
   document.getElementById('s_maliyet').textContent='₺'+fmt(tM);
   document.getElementById('s_deger').textContent='₺'+fmt(tD);
   const el=document.getElementById('s_kz');
@@ -326,22 +402,25 @@ function ozetGuncelle(){
   const pEl=document.getElementById('s_kz_pct');
   pEl.textContent=(kz>=0?'+':'')+kzP.toFixed(2)+'%';
   pEl.style.color=kz>=0?'#48bb78':'#fc8181';
+  const bKz=bD-bM, kKz=kD-kM;
   const sb=document.getElementById('s_bist');
-  sb.textContent=bM?(bD-bM>=0?'+':'')+'₺'+fmt(bD-bM):'—';
-  sb.className='val '+(bD-bM>=0?'green':'red');
+  sb.textContent=bM?(bKz>=0?'+':'')+'₺'+fmt(bKz):'—';
+  sb.className='val '+(bKz>=0?'green':'red');
   const sk=document.getElementById('s_kripto');
-  sk.textContent=kM?(kD-kM>=0?'+':'')+'₺'+fmt(kD-kM):'—';
-  sk.className='val '+(kD-kM>=0?'green':'red');
+  sk.textContent=kM?(kKz>=0?'+':'')+'₺'+fmt(kKz):'—';
+  sk.className='val '+(kKz>=0?'green':'red');
 }
 
-function tabloRender(){
+function tabloRender() {
   const tbody=document.getElementById('tbody');
   const liste=aktifTab===0?varliklar:aktifTab===1?varliklar.filter(v=>v.tur==='bist'):varliklar.filter(v=>v.tur==='kripto');
   document.getElementById('emptyMsg').style.display=liste.length?'none':'block';
   tbody.innerHTML='';
-  liste.forEach(v=>{
-    const mal=v.alisFiyati*v.adet,deg=v.guncelFiyat?v.guncelFiyat*v.adet:null;
-    const kz=deg!==null?deg-mal:null,kzP=kz!==null&&mal?(kz/mal*100):null;
+  liste.forEach(v => {
+    const mal=v.alisFiyati*v.adet;
+    const deg=v.guncelFiyat?v.guncelFiyat*v.adet:null;
+    const kz=deg!==null?deg-mal:null;
+    const kzP=kz!==null&&mal?(kz/mal*100):null;
     const tr=document.createElement('tr');
     tr.innerHTML=`
       <td class="sym">${v.sembol}</td>
@@ -354,16 +433,22 @@ function tabloRender(){
       <td class="num">${deg!==null?'₺'+fmt(deg):'—'}</td>
       <td class="${kz===null?'num':kz>=0?'green':'red'}">${kz!==null?(kz>=0?'+':'')+'₺'+fmt(kz):'—'}</td>
       <td class="${kzP===null?'num':kzP>=0?'green':'red'}">${kzP!==null?(kzP>=0?'+':'')+kzP.toFixed(2)+'%':'—'}</td>
-      <td><button class="del-btn" onclick="varlikSil(${v.id})">×</button></td>`;
+      <td style="text-align:center">
+        <button class="del-btn" title="Fiyat Güncelle" onclick="manuelFiyat(${v.id})">✏️</button>
+        <button class="del-btn" onclick="varlikSil(${v.id})">×</button>
+      </td>`;
     tbody.appendChild(tr);
   });
 }
 
-function fmt(n,d=2){return(n||0).toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmt(n,d=2){ return (n||0).toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 
-yukle(); tabloRender(); ozetGuncelle();
-bistListeYukle();
-if(varliklar.length) tumFiyatlariGuncelle(); else kurCek();
+// Başlangıç
+yukle();
+tabloRender();
+ozetGuncelle();
+if(varliklar.length) tumFiyatlariGuncelle();
+else kurCek();
 </script>
 </body>
 </html>
